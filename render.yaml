@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: tycoon-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
+    routes:
+      - type: http
+        path: /api
+        matchType: prefix
+      - type: http
+        path: /
+        matchType: prefix
